@@ -1,0 +1,40 @@
+format_version: 10
+pipelines:
+  testing-pipeline-as-code:
+    group: defaultGroup
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      Helm-material:
+        git: https://github.com/helm/helm.git
+        username: ''
+        shallow_clone: true
+        auto_update: true
+        branch: main
+    stages:
+    - check_the_env_first:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          list_envs:
+            timeout: 0
+            environment_variables:
+              var1: val1
+              var2: val2
+            tasks:
+            - exec:
+                arguments:
+                - -l
+                command: ls
+                run_if: passed
+            - exec:
+                command: pwd
+                run_if: passed
+            - exec:
+                command: env
+                run_if: passed
