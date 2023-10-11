@@ -1,14 +1,23 @@
 format_version: 10
 pipelines:
-  gocd-pipeline-with-code-repo-poc:
+  testing_specific_file_changes:
     group: defaultGroup
-    template: repo-build-from-git
     label_template: ${COUNT}
     lock_behavior: none
     display_order: -1
     materials:
-      GoCD-Code-Repo-POC:
+      git-9a5705a:
         git: https://github.com/bishtmaniish/gocd-code-repo.git
-        shallow_clone: true
+        includes:
+        - devops/k8sdevyml/tips/tips-service-api-deployment.yml
+        shallow_clone: false
         auto_update: true
         branch: main
+    stages:
+    - deploying:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
