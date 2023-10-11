@@ -6,7 +6,7 @@ pipelines:
     lock_behavior: none
     display_order: -1
     materials:
-      git-9a5705a:
+      git-28c972e:
         git: https://github.com/bishtmaniish/gocd-code-repo.git
         includes:
         - devops/k8sdevyml/tips/tips-service-api-deployment.yml
@@ -21,3 +21,26 @@ pipelines:
         approval:
           type: success
           allow_only_on_success: false
+        jobs:
+          deploy:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - -l
+                command: ls
+                run_if: passed
+            - exec:
+                command: pwd
+                run_if: passed
+            - exec:
+                arguments:
+                - status
+                command: git
+                run_if: passed
+            - exec:
+                arguments:
+                - remote
+                - -v
+                command: git
+                run_if: passed
