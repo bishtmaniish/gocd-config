@@ -1,0 +1,19 @@
+format_version: 10
+pipelines:
+  pipleine_name_here:
+    group: defaultGroup
+    template: test_template
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+  environment_variables:
+    srwr_env: test
+    svc_name: race
+    materials:
+      material_name:
+        git: https://github.com/bishtmaniish/gocd-code-repo.git
+        includes:
+        - devops/k8sdevyaml/tips/test.yaml
+        shallow_clone: false
+        auto_update: true
+        branch: main
