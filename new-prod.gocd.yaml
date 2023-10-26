@@ -3,9 +3,9 @@ pipelines:
   pipleine_name_here:
     group: defaultGroup
     template: test_template
-  environment_variables:
-    srwr_env: test
-    svc_name: race
+    environment_variables:
+      srwr_env: test
+      svc_name: race
     materials:
       material_name:
         git: https://github.com/bishtmaniish/gocd-code-repo.git

@@ -3,9 +3,9 @@ pipelines:
   pipleine_name_here2:
     group: defaultGroup
     template: test_template
-  environment_variables:
-    srwr_env: prod
-    svc_name: tips
+    environment_variables:
+      srwr_env: prod
+      svc_name: tips
     materials:
       material_name2:
         git: https://github.com/bishtmaniish/gocd-code-repo.git
