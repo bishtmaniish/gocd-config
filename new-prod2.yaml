@@ -3,9 +3,6 @@ pipelines:
   pipleine_name_here2:
     group: defaultGroup
     template: test_template
-    label_template: ${COUNT}
-    lock_behavior: none
-    display_order: -1
   environment_variables:
     srwr_env: prod
     svc_name: tips
